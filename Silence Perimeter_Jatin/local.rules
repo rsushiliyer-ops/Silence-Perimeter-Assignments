@@ -1,0 +1,8 @@
+alert icmp any any -> any any (msg:"Custom: ICMP Ping Detected"; sid:1000001; rev:1;)
+alert tcp any any -> any any (msg: "Custom:SYN Scan Detected"; flags:S; sid:300001; rev:2;)
+alert tcp any any -> any 23 (msg: "Custom: Telnet Attempt";sid:4000001;rev:1;)
+alert tcp $HOME_NET 21 -> any any (msg:"Custom:FTP User/Pass Credential Exposure"; content:"USER"; nocase; sid:5000001; rev:1;)
+alert tcp $HOME_NET 21 -> any any (msg:"Custom:FTP User/Pass Credential Exposure"; content:"PASS"; nocase; sid:6000001; rev:1;)
+alert tcp any any -> $HOME_NET any (msg:"Custom:Port Scanning in Progress"; flags:S; threshold:type both, track by_src, count 5, seconds 10; sid:2000006; rev:1;)
+
+
