@@ -1,0 +1,56 @@
+OSPF 1 AREA 0
+
+----------------
+Router – HQ  Configuration
+
+en
+config t
+hostname R0
+
+int f0/0
+ip add 10.10.10.1 255.255.255.0
+no sh
+
+int f0/1
+ip add 192.168.12.1 255.255.255.252
+no sh
+
+int f1/0
+ip add 192.168.13.1 255.255.255.252
+no sh
+
+router ospf 1
+
+int f0/0
+ip ospf 1 area 0
+int f0/1
+ip ospf 1 area 0
+int f1/0
+ip ospf 1 area 0
+-----------------------
+
+
+
+Router - Bravo Configuration
+
+en
+config t
+hostname R1
+int f0/0
+ip add 192.168.12.2 255.255.255.252
+no sh
+
+int f0/1
+ip add 20.20.20.1 255.255.255.0
+no sh
+
+router ospf 1
+
+int f0/0
+ip ospf 1 area 0
+int f0/1
+ip ospf 1 area 0
+
+----------------------
+
+

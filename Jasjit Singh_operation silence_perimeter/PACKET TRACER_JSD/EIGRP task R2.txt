@@ -1,0 +1,39 @@
+EIGRP of Router Charlie
+
+
+en
+config t
+hostname R2 (Charlie)
+
+int f0/0
+ip add 192.168.23.1 255.255.255.252
+no sh
+
+int f0/1
+ip add 30.30.30.1 255.255.255.0
+no sh
+
+int f1/0
+ip add 192.168.13.2 255.255.255.252
+no sh
+
+router eigrp 100
+no auto-summary
+network 192.168.13.0 0.0.0.3
+network 192.168.23.0 0.0.0.3
+network 30.30.30.0 0.0.0.255
+
+----------------
+
+en
+config t
+hostname R1
+
+
+
+router eigrp 100
+no auto-summary
+network 192.168.23.0 0.0.0.3
+
+--------------------
+
